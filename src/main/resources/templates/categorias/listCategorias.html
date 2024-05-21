@@ -1,0 +1,92 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/logotipo.png}">
+
+    <title>JobiFy | Listado de Categorías</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Categorías</strong></h4>              
+          <div class="card-body">
+            <a class="btn btn-primary" th:href="@{/categorias/create}" role="button" title="Crear nueva Categoría"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
+            <hr>
+            <!-- Aviso al usuario que se han guardado o eliminado correctamente los datos (depende del método que se use) -->
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="categoria : ${categorias}">
+                  <th scope="row" th:text="${categoria.id}"></th>
+                  <td th:text="${categoria.nombre}"></td>
+                  <td th:text="${categoria.descripcion}"></td>
+                  <td>
+                    <a th:href="@{/categorias/edit/{id} (id=${categoria.id}) }" class="btn btn-success btn-sm" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/categorias/delete/{id} (id=${categoria.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                  </td>
+                </tr>                              
+              </tbody>
+            </table>
+			
+		  <!-- Para aplicar paginación, si el total de páginas es mayor a 0 -->
+          <nav th:if="${categorias.totalPages > 0}" aria-label="Page navigation example" >
+				<ul class="pagination justify-content-center">
+					<!-- Si el número de página es 0 deshabilito poder presionar el botón "Anterior", porque no hay páginas antes de la 0 -->
+					<li class="page-item" th:classappend="${categorias.number == 0 ? 'disabled' : ''}">
+						<!-- Le resto uno cada vez que le demos al botón "Anterior" para volver a la página anterior -->
+						<a class="page-link" th:href="@{/categorias/index(page=${categorias.number - 1})}">Anterior</a>
+					</li>
+					
+					<!-- Le sumo uno para ir a la siguiente página y activo el botón "Anterior" -->
+					<li class="page-item" th:classappend="${i eq categorias.number + 1} ? 'active'" th:each="i : ${#numbers.sequence( 1, categorias.totalPages, 1)}">
+						<!-- Muesto qué número de página se hace click con un ToolTipText y voy a esa url dinámica con el número de la página seleccionada -->
+						<a class="page-link" th:href="@{/categorias/index?page={tmpPag} (tmpPag=${i-1}) }" th:text="${i}" th:title="${'Página '+ i}" data-toggle="tooltip"></a>
+					</li>
+					
+					<!-- Si estoy en la última página deshabilito poder darle al botón "Siguiente", porque no hay más páginas -->
+					<li class="page-item" th:classappend="${categorias.number == (categorias.totalPages - 1) ? 'disabled' : ''}">
+						<!-- Le sumo uno cada vez que le damos al botón "Siguiente" para ir a la siguiente página -->
+						<a th:href="@{/categorias/index(page=${categorias.number + 1})}" class="page-link">Siguiente</a>
+					</li>
+				</ul>
+			</nav>
+            
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>	

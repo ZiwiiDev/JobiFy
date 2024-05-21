@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/logotipo.png}">
+
+    <title>JobiFy | Creación de Categorías</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  </head>
+
+  <body>
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+    <main role="main">
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Datos de la categoría</strong></h4>              
+          <div class="card-body">
+          	<!-- Vincular los input con las propiedades, vincular el formulario con el objeto vacante -->
+            <form th:action="@{/categorias/save}" method="post" th:object="${categoria}">
+				<div th:if="${#fields.hasErrors('*')}"class='alert alert-danger' role='alert'>
+					Por favor, corrige los siguientes errores:
+					<ul>
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>	<!-- Creo una variable temporal "err" y si encuentra algún error avisa -->
+					</ul>
+				</div>
+				
+              <div class="row">
+                <div class="col-md-6"> 
+                  <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <!-- Para que actualice el registro que tenga id del que se pinche, y no cree otro registro nuevo con los mismos datos -->
+                    <input type="hidden" th:field="*{id}">
+                     <!-- th:field lo que hace es vincular el campo nombre con el input -->
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Escribe el nombre de la categoría" required="required">
+                  </div>
+                </div>                
+              </div> 
+              <div class="row">
+                <div class="col-md-6"> 
+                  <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                     <!-- th:field debe contener el mismo nombre que la variable en la clase Vacante -->
+                    <textarea class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" rows="2"></textarea>
+                  </div> 
+                </div>                
+              </div> 
+              <hr>
+              <button type="submit" title="Guardar el registro." class="btn btn-primary">Guardar</button>  
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+     <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>

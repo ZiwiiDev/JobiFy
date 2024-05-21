@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!--Para utilizar Thymeleaf en un archivo HTML se debe agregar el namespace (url) -->
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Listado de Ofertas de Trabajo</title>
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logotipo.png}">
+</head>
+<body>
+
+	<h1>Vacantes disponibles</h1>
+
+	<ol>
+		<li th:each="tmpEmp:${empleos}" th:text="${tmpEmp}"></li>
+	</ol>
+
+</body>
+</html>

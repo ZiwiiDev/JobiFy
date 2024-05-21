@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/logotipo.png}">
+
+    <title>JobiFy | Listado de Ofertas de Trabajo</title>
+    
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+    <main role="main">
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Ofertas de Trabajo</strong></h4>              
+          <div class="card-body">
+            <a class="btn btn-primary" th:href="@{/vacantes/create}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
+            <hr>
+            <!-- Aviso al usuario que se han guardado o eliminado correctamente los datos (depende del método que se use) -->
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">Nombre</th>                  
+                  <th scope="col">Fecha Publicación</th>
+                  <th scope="col">Estatus</th>
+                  <th scope="col">Destacada</th>
+                  <th scope="col">Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="vacante : ${vacantes}">
+                	<td th:text="${vacante.categoria.nombre}"></td>		<!-- clase vacante > atributo categoria > atributo nombre de la clase categoría (atributo categoría de la clase vacante es de tipo categoria) -->
+  	 	 			<td th:text="${vacante.nombre}"></td>
+   	 				<td th:text="${#dates.format(vacante.fecha, 'dd/MM/yyyy')}"></td>
+   	 				<td th:text="${vacante.estatus}"></td>
+   	 				<td>
+   	 					<span class="badge bg-success" th:if="${vacante.destacado == 1}">Si</span>
+						<span class="badge bg-danger" th:unless="${vacante.destacado == 1}">No</span>
+   	 				</td>
+   	 				<td>
+						<a th:href="@{/vacantes/edit/{id} (id=${vacante.id}) }" class="btn btn-success btn-sm" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    	<a th:href="@{/vacantes/delete/{id} (id=${vacante.id}) }" onclick="return confirm('¿Estás seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+					</td>
+                </tr>
+              </tbody>
+            </table>
+            
+          <!-- Para aplicar paginación, si el total de páginas es mayor a 0 -->
+          <nav th:if="${vacantes.totalPages > 0}" aria-label="Page navigation example" >
+				<ul class="pagination justify-content-center">
+					<!-- Si el número de página es 0 deshabilito poder presionar el botón "Anterior", porque no hay páginas antes de la 0 -->
+					<li class="page-item" th:classappend="${vacantes.number == 0 ? 'disabled' : ''}">
+						<!-- Le resto uno cada vez que le demos al botón "Anterior" para volver a la página anterior -->
+						<a class="page-link" th:href="@{/vacantes/index(page=${vacantes.number - 1})}">Anterior</a>
+					</li>
+					
+					<!-- Le sumo uno para ir a la siguiente página y activo el botón "Anterior" -->
+					<li class="page-item" th:classappend="${i eq vacantes.number + 1} ? 'active'" th:each="i : ${#numbers.sequence( 1, vacantes.totalPages, 1)}">
+						<!-- Muesto qué número de página se hace click con un ToolTipText y voy a esa url dinámica con el número de la página seleccionada -->
+						<a class="page-link" th:href="@{/vacantes/index?page={tmpPag} (tmpPag=${i-1}) }" th:text="${i}" th:title="${'Página '+ i}" data-toggle="tooltip"></a>
+					</li>
+					
+					<!-- Si estoy en la última página deshabilito poder darle al botón "Siguiente", porque no hay más páginas -->
+					<li class="page-item" th:classappend="${vacantes.number == (vacantes.totalPages - 1) ? 'disabled' : ''}">
+						<!-- Le sumo uno cada vez que le damos al botón "Siguiente" para ir a la siguiente página -->
+						<a th:href="@{/vacantes/index(page=${vacantes.number + 1})}" class="page-link">Siguiente</a>
+					</li>
+				</ul>
+			</nav>
+            
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    
+    <script>
+	
+		// Guardamos en una variable una funcion que muestra un cuadro de dialogo de tipo confirm
+		var dialogoConfirm = function (e) {
+			if (!confirm('¿Realmente desea eliminar el registro?')) 
+				e.preventDefault();
+		};
+
+		// Aplicamos a todos los elementos HTML que tengan la clase CSS 'confirmar' el evento click para que muestre el cuadro de dialogo de confirmacion. 
+		document.querySelectorAll('.confirmar').forEach(function(elemento) {
+			elemento.addEventListener('click', dialogoConfirm, false);
+		});
+	
+	</script>
+         
+  </body>
+</html>
