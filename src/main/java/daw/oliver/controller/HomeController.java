@@ -22,9 +22,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import daw.oliver.model.Perfil;
@@ -175,6 +175,17 @@ public class HomeController {
 		return "home";
 	}//end buscar(@ModelAttribute("searchOfertas") Vacante vacante, Model model)
 	
+	// Defino el método para encriptar un texto usando Bcrypt
+	// Al entrar a esta url nos sale cuál sería la contraseña encriptada de cualquier texto que pongamos
+	// PRUEBA: http://localhost:8080/bcrypt/prueba
+	@GetMapping("/bcrypt/{texto}")
+	@ResponseBody		// Esta anotación lo que hace es que cuando haces una petición a este método devuelve el texto del return a la url del navegador
+	public String encriptar(@PathVariable("texto") String texto) {
+		// Encripto las contraseñas que se han guardado sin encriptar antes de meter el método para encriptarlas
+		// Para que los que se han registrado antes de encriptar las contraseñas no pierdan su cuenta
+		return texto + " Encriptado en Bcrypt: " + passwordEncoder.encode(texto);
+	}//end encriptar(@PathVariable("texto") String texto)
+	
 	// Defino el método "initBinder" para convertir strings vacíos a null
 	// Para hacer el select de las vacantes de la página principal
 	@InitBinder
@@ -202,17 +213,6 @@ public class HomeController {
 	/*-------------------------------------------------------------*/
 	
 	/* - PRUEBAS -
-	---------------------------------------------------------------------------------------------------
-	// Defino el método para encriptar un texto usando Bcrypt
-	// Al entrar a esta url nos sale cuál sería la contraseña encriptada de cualquier texto que pongamos
-	// PRUEBA: http://localhost:8080/bcrypt/prueba
-	@GetMapping("/bcrypt/{texto}")
-	@ResponseBody		// Esta anotación lo que hace es que cuando haces una petición a este método devuelve el texto del return a la url del navegador
-	public String encriptar(@PathVariable("texto") String texto) {
-		// Encripto las contraseñas que se han guardado sin encriptar antes de meter el método para encriptarlas
-		// Para que los que se han registrado antes de encriptar las contraseñas no pierdan su cuenta
-		return texto + " Encriptado en Bcrypt: " + passwordEncoder.encode(texto);
-	}//end encriptar(@PathVariable("texto") String texto)
 	---------------------------------------------------------------------------------------------------
 	// Defino el método para mostrar una tabla de vacantes
 	@GetMapping("/tabla")

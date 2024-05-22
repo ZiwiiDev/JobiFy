@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> <!--Para utilizar Thymeleaf en un archivo HTML se debe agregar el namespace (url) -->
+<html xmlns:th="http://www.thymeleaf.org"> <!--Para utilizar "Thymeleaf"" en un archivo "HTML" se debe agregar el namespace (URL) -->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,14 +17,13 @@
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
 
     <main role="main">
-    
       <div class="jumbotron">
         <div class="container">
-          <h3>¡Encuentra el trabajo de tus sueños!</h3>
+          <h3>¡Encuentra el trabajo de tus sueños! 🤩</h3>
           Puedes buscar por descripción y categoría.
-          <!-- Para mapear un formulario html a un objeto de modelo utilizamos th:object (search es el nombre que le pusimos en el método setGenericos del HomeController) -->
+          <!-- Para mapear un formulario "HTML" a un objeto de modelo utilizamos "th:object" ("search" es el nombre que le pusimos en el método "setGenericos" del "HomeController") -->
           <form class="form-inline" th:action="@{/searchOfertas}" method="get" th:object="${searchOfertas}">
-            <input type="text" class="form-control mb-3" th:field="*{descripcion}" placeholder="Escriba una búsqueda">&nbsp;
+            <input type="text" class="form-control mb-3" th:field="*{descripcion}" placeholder="Escriba una descripción">&nbsp;
             <select class="custom-select custom-select mb-3" th:field="*{categoria.id}">
               <option th:value="${null}" selected>Seleccione una categoría</option>
               <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
@@ -33,17 +32,15 @@
           </form>
         </div>
       </div>
-      <hr>
 
       <div class="container">
       <!-- Aviso al usuario que se ha enviado correctamente el CV -->
       <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
-        <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
-        <hr>
+        <hr><h2 class="font-weight-bold text-center text-capitalize">⭐ DESTACADOS ⭐</h2><hr><br>
         <div class="row" th:each="vacante : ${vacantes}">
         
           <div class="col-md-3">
-            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Generic placeholder image" width="220" height="220">            
+            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Logotipo empresa vacante" width="220" height="220">            
           </div>
           
           <div class="col-md-9">
@@ -59,12 +56,11 @@
             </h6>
             
             <p th:text="${vacante.descripcion}"></p>
-            <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${vacante.id}) }" role="button">Detalles &raquo;</a></p>            
+            <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${vacante.id}) }" role="button">Detalles &raquo;</a></p><br>
           </div>
         </div>
 	    <hr>
       </div>
-
     </main>
 
     <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
