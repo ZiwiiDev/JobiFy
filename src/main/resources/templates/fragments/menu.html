@@ -9,7 +9,6 @@
 			<!-- Lo que hace es que sólo pueden ver vacantes los que tengan estos permisos -->
 			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
 				<a class="nav-link" th:href="@{/vacantes/index}">Vacantes</a>
-				<!-- <a class="nav-link" href="vacantes/index">Vacantes</a> -->
 			</li>
 			
 			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
@@ -23,8 +22,8 @@
 			<li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
 				<a class="nav-link" th:href="@{/usuarios/index}">Usuarios</a>
 			</li>
-       		
      	</ul>
+     	
      		<!-- sec:authorize="isAnonymous()" lo que hace es que sólo les sale el botón de ingresar y registrarse si no han iniciado sesión (anonymous) -->
      		<div sec:authorize="isAnonymous()">
      			 <!-- "@{/index} es para que aparezca la página principal, si lo quitamos o ponemos otra cosa no saldrá -->
@@ -33,11 +32,10 @@
 			</div>
 			
 			<!-- sec:authorize="isAuthenticated()" lo que hace es que sólo les sale la bienvenida y el botón salir a los usuarios que estén logueados -->
-			<div sec:authorize="isAuthenticated()">
+			<div sec:authorize="isAuthenticated()">🩵
 				<!-- Si el usuario ha iniciado sesión le damos la bienvenida con su nombre -->
-				<span class="text-light">Bienvenid@</span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;
+				<span class="text-light">Bienvenid@</span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;🩵&nbsp;
 				<a class="btn btn-primary" th:href="@{/logout}">Salir</a>
 			</div>
-
      </div>
 </nav>

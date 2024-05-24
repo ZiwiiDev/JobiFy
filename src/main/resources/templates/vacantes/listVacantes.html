@@ -20,20 +20,20 @@
 
     <main role="main">
       <hr>
-      <div class="container"> 
+      <div class="container">
 
         <div class="card">
-          <h4 class="card-header"><strong>Listado de Ofertas de Trabajo</strong></h4>              
+          <h4 class="card-header"><strong>Listado de Ofertas de Trabajo 💎</strong></h4>
           <div class="card-body">
             <a class="btn btn-primary" th:href="@{/vacantes/create}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
-            <hr>
+            <hr	>
             <!-- Aviso al usuario que se han guardado o eliminado correctamente los datos (depende del método que se use) -->
             <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
             <table class="table table-hover">
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Categoría</th>
-                  <th scope="col">Nombre</th>                  
+                  <th scope="col">Nombre</th>
                   <th scope="col">Fecha Publicación</th>
                   <th scope="col">Estatus</th>
                   <th scope="col">Destacada</th>
@@ -47,12 +47,12 @@
    	 				<td th:text="${#dates.format(vacante.fecha, 'dd/MM/yyyy')}"></td>
    	 				<td th:text="${vacante.estatus}"></td>
    	 				<td>
-   	 					<span class="badge bg-success" th:if="${vacante.destacado == 1}">Si</span>
-						<span class="badge bg-danger" th:unless="${vacante.destacado == 1}">No</span>
+   	 					<span class="text-white badge bg-success" th:if="${vacante.destacado == 1}">Si</span>
+						<span class="text-white badge bg-danger" th:unless="${vacante.destacado == 1}">No</span>
    	 				</td>
    	 				<td>
 						<a th:href="@{/vacantes/edit/{id} (id=${vacante.id}) }" class="btn btn-success btn-sm" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    	<a th:href="@{/vacantes/delete/{id} (id=${vacante.id}) }" onclick="return confirm('¿Estás seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    	<a th:href="@{/vacantes/delete/{id} (id=${vacante.id}) }" onclick="return confirm('¿Realmente desea eliminar la vacante?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
 					</td>
                 </tr>
               </tbody>
@@ -80,27 +80,26 @@
 					</li>
 				</ul>
 			</nav>
-            
           </div>
         </div>
       </div>
 
     </main>
 
-    <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+    <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     
     <script>
 	
-		// Guardamos en una variable una funcion que muestra un cuadro de dialogo de tipo confirm
+		// Guardo en una variable una funcion que muestra un cuadro de dialogo de tipo "confirm"
 		var dialogoConfirm = function (e) {
-			if (!confirm('¿Realmente desea eliminar el registro?')) 
+			if (!confirm('¿Realmente desea eliminar la vacante?')) 
 				e.preventDefault();
 		};
 
-		// Aplicamos a todos los elementos HTML que tengan la clase CSS 'confirmar' el evento click para que muestre el cuadro de dialogo de confirmacion. 
+		// Aplico a todos los elementos HTML que tengan la clase CSS 'confirmar' el evento click para que muestre el cuadro de dialogo de confirmacion. 
 		document.querySelectorAll('.confirmar').forEach(function(elemento) {
 			elemento.addEventListener('click', dialogoConfirm, false);
 		});

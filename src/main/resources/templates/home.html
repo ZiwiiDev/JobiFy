@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> <!--Para utilizar "Thymeleaf"" en un archivo "HTML" se debe agregar el namespace (URL) -->
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Para utilizar "Thymeleaf"" en un archivo "HTML" se debe agregar el namespace (URL) -->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -51,7 +51,7 @@
             </h6>
             
             <h6 class="card-title"><strong>Publicado: </strong>
-            	<!-- Para dar formato a la fecha (quitar la hora, sólo dejar la fecha) debemos usar la expresión #dates.format -->
+            	<!-- Para dar formato a la fecha (quitar la hora, sólo dejar la fecha) debemos usar la expresión "#dates.format" -->
             	<span th:text="${#dates.format(vacante.fecha, 'dd/MM/yyyy')}"></span>
             </h6>
             

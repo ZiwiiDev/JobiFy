@@ -129,10 +129,10 @@ public class HomeController {
 		// Añado un atributo flash para mostrar un mensaje de éxito
 		// Los atributos flash proporcionan una forma de almacenar atributos para poder ser usados en otra petición diferente
 		// Son almacenados temporalmente antes de hacer el redirect para tenerlos disponibles después del redirect. Despúes del Redirect se eliminan.
-		atributos.addFlashAttribute("msg", "¡Usuario Creado!");
+		atributos.addFlashAttribute("msg", "¡Se ha creado el usuario '"+ usuario.getUsername() +"' correctamente!");
 		
 		// "Redirect" hace un rediccionamiento a la url de index para que se actualicen los cambios
-		return "redirect:/usuarios/index";
+		return "redirect:/login";
 	}//end guardarRegistro(Usuario usuario, BindingResult result, RedirectAttributes atributos)
 	
 	// Defino el método para mostrar el formulario de login

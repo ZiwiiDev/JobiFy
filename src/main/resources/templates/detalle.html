@@ -19,46 +19,44 @@
 
     <main role="main">
       <hr>
-      <div class="container"> 
+      <div class="container">
 
-        <div class="row"></div>
-          <div class="col-md-3">
-           	<img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Generic placeholder image" width="220" height="220">&nbsp;
-          </div>
-          <div class="col-md-9">
-            <div class="card">
-              <h4 class="card-header">Aplicar para <strong th:text="${vacante.nombre}"></strong></h4>              
-              <div class="card-body">
+       <div class="row"></div>
+         <div class="col-md-3">
+          	<img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Generic placeholder image" width="220" height="220">&nbsp;
+         </div>
+         <div class="col-md-9">
+           <div class="card">
+             <h4 class="card-header">Aplicar para <strong th:text="${vacante.nombre}"></strong></h4>
+             <div class="card-body">
               	
-              	<!-- Sólo les sale este mensaje a quien no esté registrado -->
-              	<div class="alert alert-danger" role="alert" sec:authorize="isAnonymous()">
-              		¿Te interesa esta Oferta? <strong>¡Regístrate</strong> y después ingresa para enviar tu CV!
-              	</div>
-              	
-                <h5 class="card-title"><strong>Categoría: </strong> <span th:text="${vacante.categoria.nombre}"></span></h5>
-                <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${#dates.format(vacante.fecha, 'dd/MM/yyyy')}"></span></h6>                
-                <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vacante.salario}"></span></h6>
-                <p class="card-text" th:text="${vacante.descripcion}"></p>
-                
-                <div class="card bg-light mb-3" >
-                  <div class="card-body">
-                    <h5 class="card-title">Detalles de la oferta de trabajo</h5>
-                    <!-- Si utilizamos th:text salen las etiquetas, para que no salgan utilizamos th:utext (unescaped text) -->
-                    <p class="card-text" th:utext="${vacante.detalles}"></p>
-                  </div>
-                </div>
-                
-                <!-- Sólo les sale este botón a los usuarios que hagan logueado y tengan rol de "USUARIO" -->
-                <a sec:authorize="isAuthenticated() and hasAnyAuthority('USUARIO')" class="btn btn-primary" th:href="@{/solicitudes/create/{id}  (id=${vacante.id}) }" role="button" title="Enviar Curriculum"><i class="fas fa-file" aria-hidden="true"></i>Enviar Curriculum</a>                            
+              <!-- Sólo les sale este mensaje a quien no esté registrado -->
+              <div class="alert alert-danger" role="alert" sec:authorize="isAnonymous()">
+              	¿Te interesa esta Oferta? <strong>¡Regístrate</strong> y después ingresa para enviar tu CV!
               </div>
-            </div>  
-          </div>
-        </div>
-
-      </div>
+              	
+               <h5 class="card-title"><strong>Categoría: </strong> <span th:text="${vacante.categoria.nombre}"></span></h5>
+               <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${#dates.format(vacante.fecha, 'dd/MM/yyyy')}"></span></h6>                
+               <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vacante.salario}"></span></h6>
+               <p class="card-text" th:text="${vacante.descripcion}"></p>
+                
+               <div class="card bg-light mb-3" >
+                 <div class="card-body">
+                   <h5 class="card-title">Detalles de la oferta de trabajo</h5>
+                   <!-- Si utilizamos th:text salen las etiquetas, para que no salgan utilizamos th:utext (unescaped text) -->
+                   <p class="card-text" th:utext="${vacante.detalles}"></p>
+                 </div>
+               </div>
+                
+               <!-- Sólo les sale este botón a los usuarios que hagan logueado y tengan rol de "USUARIO" -->
+               <a sec:authorize="isAuthenticated() and hasAnyAuthority('USUARIO')" class="btn btn-primary" th:href="@{/solicitudes/create/{id}  (id=${vacante.id}) }" role="button" title="Enviar Curriculum"><i class="fas fa-file" aria-hidden="true"></i>Enviar Curriculum</a>                            
+             </div>
+           </div>  
+         </div>
+       </div><hr>
     </main>
 
-     <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+     <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>

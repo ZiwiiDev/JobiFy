@@ -17,12 +17,12 @@
   <body>
 	<header th:insert="~{fragments/menu :: menu-principal}"></header>
 
-    <main role="main">     
+    <main role="main">
       <hr>
-      <div class="container"> 
+      <div class="container">
 
         <div class="card">
-          <h4 class="card-header"><strong>Formulario de registro</strong></h4>              
+          <h4 class="card-header"><strong>Formulario de registro 🆕</strong></h4>
           <div class="card-body">
             <form th:action="@{/signup}" method="post" th:object="${usuario}">
             	<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
@@ -33,31 +33,31 @@
 				</div>
             
                 <div class="row">
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre">* Nombre</label>
                     <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Escriba su nombre" required="required">
                   </div>
                 </div>
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="email">Correo electrónico</label>
+                    <label for="email">* Correo electrónico</label>
                     <input type="email" class="form-control" th:field="*{email}" id="email" name="email" placeholder="Escriba su correo electrónico" required="required">
-                  </div> 
-                </div>    
-                <div class="col-md-3"> 
+                  </div>
+                </div>
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">* Username</label>
                     <input type="text" class="form-control" th:field="*{username}" id="username" name="username" placeholder="Escriba su nombre de usuario" required="required">
                   </div>
                 </div>
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">* Password</label>
                     <input type="password" class="form-control" th:field="*{password}" id="password" name="password" placeholder="Escriba su contraseña" required="required">
                   </div>
                 </div>
-              </div>                  
+              </div>
               <hr>
               <button type="submit" title="Quiero registrarme" class="btn btn-primary">Registrarse</button>  
             </form>
@@ -69,7 +69,7 @@
     
  	<footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>   
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
   </body>
 </html>

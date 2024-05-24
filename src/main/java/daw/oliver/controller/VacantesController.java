@@ -150,7 +150,7 @@ public class VacantesController {
 	public String eliminar(@PathVariable("id") int idVacante, RedirectAttributes atributos) {
 		// Lo meto en un try-catch por si puede llegar a suceder algún error
 		try {
-			serviceVacantes.eliminar(idVacante);	// Elimino la vacante
+			serviceVacantes.eliminar(idVacante);	// Elimino la vacante por ID
 			
 			atributos.addFlashAttribute("msg", "¡Vacante eliminada!");	// Agregar mensaje de éxito
 		}catch(Exception ex) {

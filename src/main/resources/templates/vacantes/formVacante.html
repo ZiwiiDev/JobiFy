@@ -19,10 +19,10 @@
 
     <main role="main">
       <hr>
-      <div class="container"> 
+      <div class="container">
 
         <div class="card">
-          <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
+          <h4 class="card-header"><strong>Datos de la oferta de trabajo 🌟</strong></h4>
           <div class="card-body">
 			  <!-- Vincular los input con las propiedades, vincular el formulario con el objeto vacante -->
 			  <!-- enctype="multipart/form-data" es para poder importar una imagen -->
@@ -35,10 +35,10 @@
 				</div>
 				
               <div class="row">
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <!-- Para que actualice el registro que tenga id del que se pinche, y no cree otro registro nuevo con los mismos datos -->
+                    <label for="nombre">* Nombre</label>
+                    <!-- Para que actualice el registro que tenga ID del que se pinche, y no cree otro registro nuevo con los mismos datos -->
                     <input type="hidden" th:field="*{id}">
                     <!-- Para guardar la imagen que ya había si no se selecciona ninguna imagen al editar el registro -->
                     <input type="hidden" th:field="*{imagen}">
@@ -46,16 +46,16 @@
                     <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Título de la oferta de trabajo" required="required">
                   </div>
                 </div>
-                <div class="col-md-9"> 
+                <div class="col-md-9">
                   <div class="form-group">
-                    <label for="descripcion">Descripción</label>
+                    <label for="descripcion">* Descripción</label>
                     <!-- th:field debe contener el mismo nombre que la variable en la clase Vacante -->
                     <input type="text" class="form-control" th:field="*{descripcion}" id="descripcion" name="descripcion" placeholder="Breve descripción de la oferta de trabajo" required="required">
-                  </div> 
-                </div>    
+                  </div>
+                </div>
               </div>
               <div class="row">
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                   <div class="form-group">
                     <label for="categoria">Categoría</label>
                     <!-- En th:field al ser un objeto de tipo categoria vamos a indicar su variable id -->
@@ -67,61 +67,61 @@
                   </div>
                 </div>
 
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                   <div class="form-group">
                     <label for="estatus">Estatus</label>
                     <select class="form-control" th:field="*{estatus}" name="estatus" id="estatus">
 					  <option value="Creada">Creada</option>
                       <option value="Aprobada">Aprobada</option>
-                      <option value="Eliminada">Eliminada</option>	
+                      <option value="Eliminada">Eliminada</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="fecha">Fecha de Publicación</label>
+                    <label for="fecha">* Fecha de Publicación</label>
                     <input type="text" class="form-control" th:field="*{fecha}" name="fecha" id="fecha" placeholder="Fecha de publicación" required="required">
-                  </div>  
-                </div>
-                <div class="col-md-3"> 
-                  <div class="form-check">
-                    <label class="form-check-label" for="destacado0"></label><br>
-                    <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="1" checked="checked" required="required">
-                    <label class="form-check-label" for="destacado1">Destacado</label>
                   </div>
+                </div>
+                <div class="col-md-3">
+					<label class="form-check-label" for="destacado0">* ¿Destacado?</label><br>
+	                <div class="form-check">
+	                  <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="1" checked="checked" required="required">
+	                  <label class="form-check-label" for="destacado1">Si</label>
+	                </div>
                   <div class="form-check">
                     <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="0">
-                    <label class="form-check-label" for="destacado2">No Destacado</label>
+                    <label class="form-check-label" for="destacado2">No</label>
                   </div>
                 </div>
-              </div>    
+              </div>
               <div class="row">
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="salario">Salario Ofrecido (Aprox)</label>
-                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado." required="required">
+                    <label for="salario">* Salario Ofrecido (Aprox)</label>
+                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado" required="required">
                   </div>
                 </div>
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                   <div class="form-group">
                     <label for="archivoImagen">Imagen</label>
                     <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen">
                   </div>
                 </div>
-              </div> 
+              </div>
               <hr>
               <div class="row">
-                <div class="col-md-9"> 
+                <div class="col-md-9">
                   <div class="form-group">
                     <label for="detalles"><strong>Detalles</strong></label>
                     <textarea class="form-control" th:field="*{detalles}" name="detalles" id="detalles" rows="7"></textarea>
-                  </div> 
+                  </div>
                 </div>
                 <div class="col-md-3">
                   <label for="imagen">Imagen/Logo</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) }" alt="Generic placeholder image" width="200" height="200">            
+                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) }" alt="Logotipo vacante" width="200" height="200">            
                 </div>
-              </div> 
+              </div>
               <button type="submit" title="Guardar el registro" class="btn btn-primary">Guardar</button>  
             </form>
           </div>
@@ -129,12 +129,13 @@
       </div>
 
     </main>
+    <hr>
 
-   <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+   <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     <script th:src="@{/tinymce/tinymce.min.js}"></script>
     <script>
       
@@ -144,7 +145,7 @@
       );
       
       tinymce.init({
-          selector: '#detalles',	<!-- Activamos el plugin de TinyMCE para el textarea con id "detalles" -->
+          selector: '#detalles',	/* Activo el plugin de "TinyMCE" para el textarea con id "detalles" */
           plugins: "textcolor, table lists code",
           toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
                     | bullist numlist outdent indent | forecolor backcolor table code"

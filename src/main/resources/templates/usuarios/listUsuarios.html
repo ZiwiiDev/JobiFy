@@ -20,10 +20,10 @@
 
     <main role="main">
       <hr>
-      <div class="container"> 
+      <div class="container">
 
         <div class="card">
-          <h4 class="card-header"><strong>Listado de Usuarios</strong></h4>              
+          <h4 class="card-header"><strong>Listado de Usuarios 🌎</strong></h4>
           <div class="card-body">
             <!-- Aviso al usuario que se han guardado o eliminado correctamente los datos (depende del método que se use) -->
             <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
@@ -31,38 +31,63 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Nombre</th>
-                  <th scope="col">Username</th>                  
+                  <th scope="col">Username</th>
                   <th scope="col">Email</th>
                   <th scope="col">Estatus</th>
-                  <th scope="col">Operaciones</th>
+                  <!--<th scope="col">Operaciones</th>-->
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="usuario : ${usuarios}">
                   <td th:text="${usuario.nombre}"></td>
-                  <td th:text="${usuario.username}"></td>                
+                  <td th:text="${usuario.username}"></td>
                   <td th:text="${usuario.email}"></td>
                   <td>
-   	 					<span class="badge bg-success" th:if="${usuario.estatus == 1}">Activo</span>
-						<span class="badge bg-danger" th:unless="${usuario.estatus == 1}">Bloqueado</span>
+   	 					<span class="text-white badge bg-success" th:if="${usuario.estatus == 1}">Activo</span>
+						<span class="text-white badge bg-danger" th:unless="${usuario.estatus == 1}">Bloqueado</span>
    	 			  </td>
+   	 			  <!--
                   <td>
-                    <a href="#" class="btn btn-success btn-sm confirmar" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	
+                    <a th:href="@{/usuarios/delete/{id} (id=${usuario.id}) }" onclick="return confirm('¿Realmente desea eliminar este usuario?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a href="#" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>
                     <a href="#" class="btn btn-success btn-sm" role="button" title="Permitir el acceso al sistema a este usuario."><i class="fas fa-unlock" aria-hidden="true"></i></a>
                   </td>
+                  -->
                 </tr>
-                                               
               </tbody>
             </table>
             
+          <!-- Para aplicar paginación, si el total de páginas es mayor a 0 -->
+          <!--
+          <nav th:if="${usuarios.totalPages > 0}" aria-label="Page navigation example" >
+				<ul class="pagination justify-content-center">-->
+					<!-- Si el número de página es 0 deshabilito poder presionar el botón "Anterior", porque no hay páginas antes de la 0 -->
+					<!--<li class="page-item" th:classappend="${usuarios.number == 0 ? 'disabled' : ''}">-->
+						<!-- Le resto uno cada vez que le demos al botón "Anterior" para volver a la página anterior -->
+						<!--<a class="page-link" th:href="@{/usuarios/index(page=${usuarios.number - 1})}">Anterior</a>
+					</li>-->
+					
+					<!-- Le sumo uno para ir a la siguiente página y activo el botón "Anterior" -->
+					<!--<li class="page-item" th:classappend="${i eq usuarios.number + 1} ? 'active'" th:each="i : ${#numbers.sequence( 1, usuarios.totalPages, 1)}">-->
+						<!-- Muesto qué número de página se hace click con un ToolTipText y voy a esa url dinámica con el número de la página seleccionada -->
+						<!--<a class="page-link" th:href="@{/usuarios/index?page={tmpPag} (tmpPag=${i-1}) }" th:text="${i}" th:title="${'Página '+ i}" data-toggle="tooltip"></a>
+					</li>-->
+					
+					<!-- Si estoy en la última página deshabilito poder darle al botón "Siguiente", porque no hay más páginas -->
+					<!--<li class="page-item" th:classappend="${usuarios.number == (usuarios.totalPages - 1) ? 'disabled' : ''}">-->
+						<!-- Le sumo uno cada vez que le damos al botón "Siguiente" para ir a la siguiente página -->
+						<!--<a th:href="@{/usuarios/index(page=${usuarios.number + 1})}" class="page-link">Siguiente</a>
+					</li>
+				</ul>
+			</nav>
+			-->
           </div>
         </div>
       </div>
 
     </main>
 
-   	<footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+   	<footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>

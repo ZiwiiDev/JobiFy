@@ -18,12 +18,12 @@
   <body>
 	<header th:insert="~{fragments/menu :: menu-principal}"></header>
 
-    <main role="main">     
+    <main role="main">
       <hr>
-      <div class="container"> 
+      <div class="container">
 
         <div class="card">
-          <h4 class="card-header"><strong>Listado de Solicitudes de Empleo</strong></h4>              
+          <h4 class="card-header"><strong>Listado de Solicitudes de Empleo 📄</strong></h4>
           <div class="card-body">
           	<!-- Aviso al usuario que se han guardado o eliminado correctamente los datos (depende del método que se use) -->
             <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
@@ -42,14 +42,14 @@
                   <td th:text="${solicitud.vacante.categoria.nombre}"></td>
                   <td th:text="${solicitud.vacante.nombre}"></td>
                   <td th:text="${solicitud.usuario.nombre}"></td>
-                  <td th:text="${solicitud.fecha}">12-01-2023</td>
+                  <td th:text="${solicitud.fecha}"></td>
                   <td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <!--<a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>-->
                     <!-- target="blank" lo que hace es que cuando se de click en el botón descargar el archivo se abre en una pestaña nueva -->
-                    <a th:href="@{/cv/{archivo} (archivo=${solicitud.archivo}) }" target="blank" class="btn btn-success btn-sm" role="button" title="Descargar Curriculm Vitae."><i class="fas fa-download" aria-hidden="true"></i></a>
-                    <a th:href="@{/solicitudes/delete/{id} (id=${solicitud.id}) }" class="btn btn-success btn-sm confirmar" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Enviar correo electrónico al usuario."><i class="fas fa-envelope" aria-hidden="true"></i></a>
-                    </td>
+                    <a th:href="@{/cv/{archivo} (archivo=${solicitud.archivo}) }" target="blank" class="btn btn-success btn-sm" role="button" title="Descargar Curriculm Vitae"><i class="fas fa-download" aria-hidden="true"></i></a>
+                    <a th:href="@{/solicitudes/delete/{id} (id=${solicitud.id}) }" class="btn btn-success btn-sm confirmar" role="button" title="Eliminar el registro"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <!--<a th:href="#" class="btn btn-success btn-sm" role="button" title="Enviar correo electrónico al usuario."><i class="fas fa-envelope" aria-hidden="true"></i></a>-->
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -76,14 +76,13 @@
 					</li>
 				</ul>
 			</nav>
-            
           </div>
         </div>
       </div>
 
     </main>
 
-    <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+    <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
    	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
@@ -92,7 +91,7 @@
 	
 		// Guardamos en una variable una funcion que muestra un cuadro de dialogo de tipo confirm
 		var dialogoConfirm = function (e) {
-			if (!confirm('¿Realmente desea eliminar el registro?')) 
+			if (!confirm('¿Realmente desea eliminar la solicitud?'))
 				e.preventDefault();
 		};
 

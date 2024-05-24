@@ -19,12 +19,12 @@
   <body>
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
 
-    <main role="main">     
+    <main role="main">
       <hr>
-      <div class="container"> 
+      <div class="container">
 
         <div class="card">
-          <h4 class="card-header"><strong>Listado de Categorías</strong></h4>              
+          <h4 class="card-header"><strong>Listado de Categorías 🧩</strong></h4>
           <div class="card-body">
             <a class="btn btn-primary" th:href="@{/categorias/create}" role="button" title="Crear nueva Categoría"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
             <hr>
@@ -46,9 +46,9 @@
                   <td th:text="${categoria.descripcion}"></td>
                   <td>
                     <a th:href="@{/categorias/edit/{id} (id=${categoria.id}) }" class="btn btn-success btn-sm" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a th:href="@{/categorias/delete/{id} (id=${categoria.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/categorias/delete/{id} (id=${categoria.id}) }" onclick="return confirm('¿Realmente desea eliminar la categoría?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
-                </tr>                              
+                </tr>
               </tbody>
             </table>
 			
@@ -79,14 +79,11 @@
         </div>
       </div>
 
-    </main>
+    </main><hr>
 
-    <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+    <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
   </body>
-</html>	
+</html>

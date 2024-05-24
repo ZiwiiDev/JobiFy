@@ -48,7 +48,7 @@ public class UsuariosController {
     		atributos.addFlashAttribute("msg", "¡Usuario Eliminado!");
     	} catch(Exception ex) {
     		// Agrego un mensaje de error como atributo flash
-    		atributos.addFlashAttribute("msg", "¡No es posible eliminar el Usuario seleccionada!");
+    		atributos.addFlashAttribute("msg", "¡No es posible eliminar el Usuario seleccionado!");
     	}//end catch
 
     	// Redirijo a la página de index de usuarios
