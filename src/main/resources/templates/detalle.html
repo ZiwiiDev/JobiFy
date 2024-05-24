@@ -50,6 +50,7 @@
                 
                <!-- Sólo les sale este botón a los usuarios que hagan logueado y tengan rol de "USUARIO" -->
                <a sec:authorize="isAuthenticated() and hasAnyAuthority('USUARIO')" class="btn btn-primary" th:href="@{/solicitudes/create/{id}  (id=${vacante.id}) }" role="button" title="Enviar Curriculum"><i class="fas fa-file" aria-hidden="true"></i>Enviar Curriculum</a>                            
+               <button type="button" class="btn btn-secondary" onclick="history.back()">Volver</button>
              </div>
            </div>  
          </div>

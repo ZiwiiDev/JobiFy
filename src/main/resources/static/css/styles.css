@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #1a1a1a;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  max-width: 600px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  animation: slideIn 1.5s ease-in-out, pulse 2s infinite;
+}
+
+h1 {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  color: #ff4040;
+  animation: textGlow 1.5s ease-in-out infinite alternate;
+}
+
+p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: #ff4040;
+  border-color: #ff4040;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e60000;
+  border-color: #e60000;
+}
+
+.gif-container {
+  margin-top: 20px;
+  animation: bounce 2s infinite;
+}
+
+.gif-container img {
+  width: 100px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 64, 64, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(255, 64, 64, 1);
+  }
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 64, 64, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(255, 64, 64, 1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}

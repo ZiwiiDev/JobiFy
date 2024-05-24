@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import daw.oliver.model.Usuario;
@@ -46,6 +48,11 @@ public class UsuariosServiceJPA implements IUsuariosService{
 	public Usuario buscarPorUsername(String username) {
 		return usuarioRepo.findByUsername(username);
 	}//end buscarPorUsername(String username)
+	
+	@Override
+	public Page<Usuario> buscarTodos(Pageable page) {
+		return usuarioRepo.findAll(page);
+	}//end buscarTodos(Pageable page)
 	/*-------------------------------------------------------------*/
 }//end class UsuariosServiceJPA
 /*-------------------------------------------------------------*/

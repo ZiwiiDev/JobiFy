@@ -1,10 +1,10 @@
 // Declaro el paquete al que pertenece esta clase
 package daw.oliver.controller;
 /*-------------------------------------------------------------*/
-import java.util.List;
-
 //Importo las clases y anotaciones necesarias de "Spring"
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +26,9 @@ public class UsuariosController {
 	/*-------------------------------------------------------------*/
 	// Método para mostrar el index de "usuarios"
     @GetMapping("/index")
-	public String mostrarIndex(Model model) {
+	public String mostrarIndex(Model model, Pageable page) {
     	// Obtener todos los usuarios (recuperarlos con la clase de servicio)
-    	List<Usuario> lista = serviceUsuarios.buscarTodos();
+    	Page<Usuario> lista = serviceUsuarios.buscarTodos(page);
     	
     	// Agregar la lista de usuarios al modelo
     	model.addAttribute("usuarios", lista);

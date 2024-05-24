@@ -58,29 +58,27 @@
             </table>
             
           <!-- Para aplicar paginación, si el total de páginas es mayor a 0 -->
-          <!--
           <nav th:if="${usuarios.totalPages > 0}" aria-label="Page navigation example" >
-				<ul class="pagination justify-content-center">-->
+				<ul class="pagination justify-content-center">
 					<!-- Si el número de página es 0 deshabilito poder presionar el botón "Anterior", porque no hay páginas antes de la 0 -->
-					<!--<li class="page-item" th:classappend="${usuarios.number == 0 ? 'disabled' : ''}">-->
+					<li class="page-item" th:classappend="${usuarios.number == 0 ? 'disabled' : ''}">
 						<!-- Le resto uno cada vez que le demos al botón "Anterior" para volver a la página anterior -->
-						<!--<a class="page-link" th:href="@{/usuarios/index(page=${usuarios.number - 1})}">Anterior</a>
-					</li>-->
+						<a class="page-link" th:href="@{/usuarios/index(page=${usuarios.number - 1})}">Anterior</a>
+					</li>
 					
 					<!-- Le sumo uno para ir a la siguiente página y activo el botón "Anterior" -->
-					<!--<li class="page-item" th:classappend="${i eq usuarios.number + 1} ? 'active'" th:each="i : ${#numbers.sequence( 1, usuarios.totalPages, 1)}">-->
+					<li class="page-item" th:classappend="${i eq usuarios.number + 1} ? 'active'" th:each="i : ${#numbers.sequence( 1, usuarios.totalPages, 1)}">
 						<!-- Muesto qué número de página se hace click con un ToolTipText y voy a esa url dinámica con el número de la página seleccionada -->
-						<!--<a class="page-link" th:href="@{/usuarios/index?page={tmpPag} (tmpPag=${i-1}) }" th:text="${i}" th:title="${'Página '+ i}" data-toggle="tooltip"></a>
-					</li>-->
+						<a class="page-link" th:href="@{/usuarios/index?page={tmpPag} (tmpPag=${i-1}) }" th:text="${i}" th:title="${'Página '+ i}" data-toggle="tooltip"></a>
+					</li>
 					
 					<!-- Si estoy en la última página deshabilito poder darle al botón "Siguiente", porque no hay más páginas -->
-					<!--<li class="page-item" th:classappend="${usuarios.number == (usuarios.totalPages - 1) ? 'disabled' : ''}">-->
+					<li class="page-item" th:classappend="${usuarios.number == (usuarios.totalPages - 1) ? 'disabled' : ''}">
 						<!-- Le sumo uno cada vez que le damos al botón "Siguiente" para ir a la siguiente página -->
-						<!--<a th:href="@{/usuarios/index(page=${usuarios.number + 1})}" class="page-link">Siguiente</a>
+						<a th:href="@{/usuarios/index(page=${usuarios.number + 1})}" class="page-link">Siguiente</a>
 					</li>
 				</ul>
 			</nav>
-			-->
           </div>
         </div>
       </div>
