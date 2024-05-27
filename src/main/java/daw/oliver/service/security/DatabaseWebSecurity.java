@@ -57,10 +57,10 @@ public class DatabaseWebSecurity {
                 // El "requestMatchers" sirve para encontrar coincidencias de peticiones
                 // Permitimos el acceso a estas URL para los usuarios con "permitAll()"
                 // Los recursos estáticos no requieren autenticación
-                .requestMatchers("/bootstrap/**", "/images/**", "/tinymce/**", "/logos/**").permitAll()
+                .requestMatchers("/bootstrap/**", "/images/**", "/tinymce/**", "/logos/**", "/css/**").permitAll()
 
                 // Las vistas públicas no requieren autenticación
-                .requestMatchers("/", "/signup", "/searchOfertas", "/bcrypt/**", "/vacantes/view/**").permitAll()
+                .requestMatchers("/", "/signup", "/searchOfertas", "/bcrypt/**", "/vacantes/view/**", "/terms").permitAll()
 
                 // Asignar permisos a URLs por ROLES
                 .requestMatchers("/solicitudes/create/**", "/solicitudes/save/**").hasAnyAuthority("USUARIO")
