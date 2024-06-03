@@ -117,7 +117,7 @@ public class VacantesController {
 		serviceVacantes.guardar(vacante);
 		
 		// Agrego un mensaje de éxito como atributo flash
-		atributos.addFlashAttribute("msg", "¡Datos guardados!");
+		atributos.addFlashAttribute("msg", "¡Datos de la vacante guardados!");
 		
 		// No necesitamos un modelo porque ya tenemos atributos flash
 		//model.addAttribute("msg", "¡Registro Guardado!");
