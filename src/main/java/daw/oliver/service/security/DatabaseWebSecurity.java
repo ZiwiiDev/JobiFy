@@ -36,18 +36,18 @@ public class DatabaseWebSecurity {
 		/* -- BASE DE DATOS PERSONALIZADA -- */
 		// "Spring" no conoce la estructura de las tablas, así que hay que indicar la consulta SQL para recuperar los datos
 		// del usuario, y los perfiles de dicho usuario
-		JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+		JdbcUserDetailsManager usuarios = new JdbcUserDetailsManager(dataSource);
 		// Los nombres de los campos pueden ser cualquiera, pero el orden SI se tiene que respetar (cambiamos "enabled" por "estatus")
-		users.setUsersByUsernameQuery("select username,password,estatus from Usuarios u where username=?");
+		usuarios.setUsersByUsernameQuery("select username,password,estatus from Usuarios u where username=?");
 			
 		// Consulta SQL para recuperar los perfiles asociados a cada usuario
-		users.setAuthoritiesByUsernameQuery("select u.username,p.perfil from UsuarioPerfil up " +
+		usuarios.setAuthoritiesByUsernameQuery("select u.username,p.perfil from UsuarioPerfil up " +
 											"inner join Usuarios u on u.id = up.idUsuario " +
 											"inner join Perfiles p on p.id = up.idPerfil " +
 											"where u.username=?");
 
 		// Devuelvo los usuarios
-		return users;
+		return usuarios;
 	}//end users(DataSource dataSource)
 	
 	// Si tenemos la anotación "@Bean" no hace falta poner "public" al método

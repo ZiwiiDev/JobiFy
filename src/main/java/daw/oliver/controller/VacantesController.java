@@ -92,7 +92,7 @@ public class VacantesController {
 			// Recorro los errores y los imprimo en la consola (OPCIONAL PERO RECOMENDABLE)
 			for (ObjectError error: result.getAllErrors()){
 				// En la consola nos salen los errores
-				System.out.println("Ocurrió un error: " + error.getDefaultMessage());
+				System.out.println("Ocurrió un ERROR: " + error.getDefaultMessage());
 			}//end for
 			
 			// Si hay errores, devolver al formulario

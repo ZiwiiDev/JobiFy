@@ -1,9 +1,13 @@
 // Declaro el paquete al que pertenece esta clase
 package daw.oliver.controller;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /*-------------------------------------------------------------*/
 // Importo las clases necesarias
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -11,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -140,6 +146,14 @@ public class SolicitudesController {
 		// Redirijo a la página de index de solicitudes
 		return "redirect:/solicitudes/index";
 	}//end eliminar(@PathVariable("id") int idSolicitud, RedirectAttributes atributos)
+	
+	// Método para configurar el formato de fechas en el DataBinder
+	// SIEMPRE que el controlador necesite un formato de fecha hay que utilizar este método
+	@InitBinder		// Esta anotación permite inicializar el "WebDataBinder" que se utilizará para inicializar los formularios asociados al controlador
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");	// Formato de fecha
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));	// Registrar el editor de fechas
+	}//end initBinder(WebDataBinder webDataBinder)
 	/*-------------------------------------------------------------*/
 }//end class SolicitudesController
 /*-------------------------------------------------------------*/

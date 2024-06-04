@@ -93,18 +93,17 @@
     
     <script>
 	
-		// Guardo en una variable una funcion que muestra un cuadro de dialogo de tipo "confirm"
+		// Guardo en una variable una función que muestra un cuadro de diálogo de tipo "confirm"
 		var dialogoConfirm = function (e) {
 			if (!confirm('¿Realmente desea eliminar la vacante?')) 
 				e.preventDefault();
 		};
 
-		// Aplico a todos los elementos HTML que tengan la clase CSS 'confirmar' el evento click para que muestre el cuadro de dialogo de confirmacion. 
+		// Aplico a todos los elementos "HTML" que tengan la clase CSS 'confirmar' el evento click para que muestre el cuadro de diálogo de confirmación. 
 		document.querySelectorAll('.confirmar').forEach(function(elemento) {
 			elemento.addEventListener('click', dialogoConfirm, false);
 		});
 	
 	</script>
-         
   </body>
 </html>

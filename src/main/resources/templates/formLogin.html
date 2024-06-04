@@ -37,10 +37,14 @@
                   <h4 class="h3 mb-3 font-weight-normal">Ingresar</h4>
                   
                   <label for="username" class="sr-only">* Username</label>
-                  <input type="text" name="username" id="username" class="form-control" placeholder="Usuario" required autofocus><br>
-                  <label for="password" class="sr-only">* Password</label>
-                  <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña" required><br>
-                  <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+                  <input type="text" name="username" id="username" class="form-control" placeholder="Usuario" pattern="^[a-zA-Z0-9]{3,15}$" required autofocus>
+                  <small>🔡 3-15 caracteres alfanuméricos</small><br>
+                  
+                  <br><label for="password" class="sr-only">* Password</label>
+                  <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña" pattern=".{7,}" required>
+                  <small>🔒 7+ caracteres alfanuméricos</small><br>
+                  
+                  <br><button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
                   <p class="text-primary" style="font-size: small">¿Todavía no estás registrado? <a th:href="@{/signup}">Regístrate</a></p>
                   <!--
                   <hr>

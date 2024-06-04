@@ -140,13 +140,14 @@
     <script th:src="@{/tinymce/tinymce.min.js}"></script>
     <script>
       
+      /* Formato de fecha */
       $(function () {
           $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
         }
       );
       
       tinymce.init({
-          selector: '#detalles',	/* Activo el plugin de "TinyMCE" para el textarea con id "detalles" */
+          selector: '#detalles',	/* Uso la API de "TinyMCE" para el textarea con ID "detalles" */
           plugins: "textcolor, table lists code",
           toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
                     | bullist numlist outdent indent | forecolor backcolor table code"

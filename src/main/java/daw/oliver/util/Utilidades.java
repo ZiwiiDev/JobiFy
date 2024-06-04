@@ -31,7 +31,7 @@ public class Utilidades {
 			// Devuelvo el nombre final
 			return nombreFinal;
 		} catch (IOException e) {
-			System.out.println("Error " + e.getMessage());
+			System.out.println("¡ERROR!: " + e.getMessage());
 			return null;
 		}//end catch
 	}//end guardarArchivo(MultipartFile multiPart, String ruta)

@@ -14,13 +14,13 @@ public class CustomErrorController implements ErrorController {
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request) {
         // Obtén el código de estado de error
-        Integer statusCode = (Integer) request.getAttribute("jakarta.servlet.error.status_code");
+        Integer estadoError = (Integer) request.getAttribute("jakarta.servlet.error.status_code");
         
         // Verifico el tipo de error
-        if (statusCode != null) {
+        if (estadoError != null) {
         	
         	// Cada tipo de error
-            switch (statusCode) {
+            switch (estadoError) {
                 case 404:
                     return "error-404";
                 case 500:
