@@ -43,23 +43,27 @@
                     <!-- Para guardar la imagen que ya había si no se selecciona ninguna imagen al editar el registro -->
                     <input type="hidden" th:field="*{imagen}">
                     <!-- th:field lo que hace es vincular el campo nombre con el input -->
-                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Título de la oferta de trabajo" required="required">
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Nombre de la oferta de trabajo" title="El nombre debe contener entre 3 y 50 caracteres alfanuméricos" pattern=".{3,50}" required autofocus>
+                    <small>🔤 3-50 caracteres alfanuméricos</small>
                   </div>
                 </div>
+                
                 <div class="col-md-9">
                   <div class="form-group">
                     <label for="descripcion">* Descripción</label>
                     <!-- th:field debe contener el mismo nombre que la variable en la clase Vacante -->
-                    <input type="text" class="form-control" th:field="*{descripcion}" id="descripcion" name="descripcion" placeholder="Breve descripción de la oferta de trabajo" required="required">
+                   	<input type="text" class="form-control" th:field="*{descripcion}" id="descripcion" name="descripcion" placeholder="Breve descripción de la oferta de trabajo" title="La descripción debe contener entre 10 y 200 caracteres" pattern=".{10,200}" required>
+                    <small>🔤 10-200 caracteres</small>
                   </div>
                 </div>
               </div>
+              
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="categoria">Categoría</label>
                     <!-- En th:field al ser un objeto de tipo categoria vamos a indicar su variable id -->
-                    <select class="form-control" th:field="*{categoria.id}" name="categoria">
+                    <select class="form-control" th:field="*{categoria.id}" name="categoria" id="categoria" title="Desplegable con las categorías">
                       <option th:each="categoria : ${categorias}"
                       		th:value="${categoria.id}"
                       		th:text="${categoria.nombre}"></option>
@@ -70,58 +74,67 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="estatus">Estatus</label>
-                    <select class="form-control" th:field="*{estatus}" name="estatus" id="estatus">
+                    <select class="form-control" th:field="*{estatus}" name="estatus" id="estatus" title="Desplegable con los estados">
 					  <option value="Creada">Creada</option>
                       <option value="Aprobada">Aprobada</option>
                       <option value="Eliminada">Eliminada</option>
                     </select>
                   </div>
                 </div>
+                
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="fecha">* Fecha de Publicación</label>
-                    <input type="text" class="form-control" th:field="*{fecha}" name="fecha" id="fecha" placeholder="Fecha de publicación" required="required">
+                    <input type="text" class="form-control" th:field="*{fecha}" name="fecha" id="fecha" placeholder="Fecha de publicación" title="La fecha de publicación de la vacante" pattern="\d{2}-\d{2}-\d{4}" required>
+                    <small>📅 DD-MM-YYYY</small>
                   </div>
                 </div>
+                
                 <div class="col-md-3">
-					<label class="form-check-label" for="destacado0">* ¿Destacado?</label><br>
+					<label class="form-check-label" for="destacado1">* ¿Destacado?</label><br>
 	                <div class="form-check">
-	                  <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="1" checked="checked" required="required">
-	                  <label class="form-check-label" for="destacado1">Si</label>
+	                  	<input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado1" value="1" checked required>
+	                  	<label class="form-check-label" for="destacado1">Si</label>
 	                </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="0">
-                    <label class="form-check-label" for="destacado2">No</label>
-                  </div>
+	                
+                  	<div class="form-check">
+                    	<input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado2" value="0">
+                    	<label class="form-check-label" for="destacado2">No</label>
+                  	</div>
                 </div>
               </div>
+              
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="salario">* Salario Ofrecido (Aprox)</label>
-                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado" required="required">
+                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado" title="El salario debe contener una cantidad numérica con un máximo de 2 decimales" pattern="\d+(\.\d{1,2})?" required>
+                    <small>💵 Ej: 10000.00</small>
                   </div>
                 </div>
+                
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="archivoImagen">Imagen</label>
                     <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen">
                   </div>
                 </div>
-              </div>
-              <hr>
+              </div><hr>
+              
               <div class="row">
                 <div class="col-md-9">
                   <div class="form-group">
-                    <label for="detalles"><strong>Detalles</strong></label>
-                    <textarea class="form-control" th:field="*{detalles}" name="detalles" id="detalles" rows="7"></textarea>
+                    <label for="detalles">Detalles</label>
+                    <textarea class="form-control" th:field="*{detalles}" name="detalles" id="detalles" title="Los detalles de la vacante" rows="7"></textarea>
                   </div>
                 </div>
+                
                 <div class="col-md-3">
                   <label for="imagen">Imagen/Logo</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) }" alt="Logotipo vacante" width="200" height="200">            
+                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) }" alt="Logotipo de la vacante" title="Logotipo de la vacante" width="200" height="200">            
                 </div>
-              </div>
+              </div><hr>
+              
               <button type="submit" title="Guardar el registro" class="btn btn-primary">Guardar</button>  
               <button type="button" class="btn btn-secondary" onclick="history.back()">Volver</button>
             </form>

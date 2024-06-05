@@ -41,7 +41,8 @@
                     <!-- Para que actualice el registro que tenga id del que se pinche, y no cree otro registro nuevo con los mismos datos -->
                     <input type="hidden" th:field="*{id}">
                      <!-- th:field lo que hace es vincular el campo nombre con el input -->
-                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Escribe el nombre de la categoría" required="required">
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Escribe el nombre de la categoría" pattern="^[a-zA-Z0-9\s]{3,50}$" title="El nombre debe tener entre 3 y 50 caracteres alfanuméricos" required autofocus>
+                  	<small>🔤 3-50 caracteres alfanuméricos</small>
                   </div>
                 </div>
               </div>
@@ -50,7 +51,7 @@
                   <div class="form-group">
                     <label for="descripcion">Descripción</label>
                      <!-- th:field debe contener el mismo nombre que la variable en la clase Vacante -->
-                    <textarea class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" rows="2"></textarea>
+                    <textarea class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" title="Descripción" rows="2"></textarea>
                   </div>
                 </div>
               </div>

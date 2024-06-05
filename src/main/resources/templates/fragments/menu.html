@@ -1,12 +1,12 @@
 <nav th:fragment="menu-principal" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 	<a class="navbar-brand" href="/">JobiFy</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		<ul class="navbar-nav mr-auto">
-			<!-- Lo que hace es que sólo pueden ver vacantes los que tengan estos permisos -->
+			<!-- Lo que hago es que sólo pueden ver vacantes los que tengan estos permisos mediante el "sec:authorize" -->
 			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
 				<a class="nav-link" th:href="@{/vacantes/index}">Vacantes</a>
 			</li>
@@ -24,18 +24,18 @@
 			</li>
      	</ul>
      	
-     		<!-- sec:authorize="isAnonymous()" lo que hace es que sólo les sale el botón de ingresar y registrarse si no han iniciado sesión (anonymous) -->
-     		<div sec:authorize="isAnonymous()">
-     			 <!-- "@{/index} es para que aparezca la página principal, si lo quitamos o ponemos otra cosa no saldrá -->
-				 <a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;
-    		 	 <a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>&nbsp;
-			</div>
+     	<!-- sec:authorize="isAnonymous()" lo que hace es que sólo les sale el botón de ingresar y registrarse si no han iniciado sesión (anonymous) -->
+     	<div sec:authorize="isAnonymous()">
+     		 <!-- "@{/index} es para que aparezca la página principal, si lo quitamos o ponemos otra cosa no saldrá -->
+			 <a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;
+    		 <a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>&nbsp;
+		</div>
 			
-			<!-- sec:authorize="isAuthenticated()" lo que hace es que sólo les sale la bienvenida y el botón salir a los usuarios que estén logueados -->
-			<div sec:authorize="isAuthenticated()">🩵
-				<!-- Si el usuario ha iniciado sesión le damos la bienvenida con su nombre -->
-				<span class="text-light">Bienvenid@</span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;🩵&nbsp;
-				<a class="btn btn-primary" th:href="@{/logout}">Salir</a>
-			</div>
-     </div>
+		<!-- sec:authorize="isAuthenticated()" lo que hace es que sólo les sale la bienvenida y el botón salir a los usuarios que estén logueados -->
+		<div sec:authorize="isAuthenticated()">🩵
+			<!-- Si el usuario ha iniciado sesión le damos la bienvenida con su nombre -->
+			<span class="text-light">Bienvenid@</span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;🩵&nbsp;
+			<a class="btn btn-primary" th:href="@{/logout}">Salir</a>
+		</div>
+	</div>
 </nav>

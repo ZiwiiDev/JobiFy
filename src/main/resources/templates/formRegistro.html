@@ -36,29 +36,29 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="nombre">* Nombre</label>
-                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Escriba su nombre" pattern="[A-Za-z\s]+" required="required">
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Escriba su nombre" pattern="[A-Za-z\s]+" title="El nombre debe contener solo letras y espacios" required autofocus>
                     <small>🔤 Solo letras y espacios</small>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="email">* Correo electrónico</label>
-                    <input type="email" class="form-control" th:field="*{email}" id="email" name="email" placeholder="Escriba su correo electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required="required">
+                    <input type="email" class="form-control" th:field="*{email}" id="email" name="email" placeholder="Escriba su correo electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Email" required>
 					<small>📧 usuario@dominio.com</small>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="username">* Username</label>
-                    <input type="text" class="form-control" th:field="*{username}" id="username" name="username" placeholder="Escriba su nombre de usuario" pattern="^[a-zA-Z0-9]{3,15}$" required="required">
+                    <input type="text" class="form-control" th:field="*{username}" id="username" name="username" placeholder="Escriba su nombre de usuario" pattern="^[a-zA-Z0-9]{3,15}$" title="El username debe contener entre 3 y 15 caracteres alfanuméricos" required>
                     <small>🔡 3-15 caracteres alfanuméricos</small>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="password">* Password</label>
-                    <input type="password" class="form-control" th:field="*{password}" id="password" name="password" placeholder="Escriba su contraseña" pattern=".{7,}" required="required">
-                    <small>🔒 7+ caracteres alfanuméricos</small>
+                    <input type="password" class="form-control" th:field="*{password}" id="password" name="password" placeholder="Escriba su contraseña" pattern=".{7,}" title="La contraseña debe contener 6 o más caracteres alfanuméricos" required>
+                    <small>🔒 6+ caracteres alfanuméricos</small>
                   </div>
                 </div>
               </div>

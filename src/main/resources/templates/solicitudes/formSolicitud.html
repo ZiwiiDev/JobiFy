@@ -46,13 +46,13 @@
                         <label for="comentarios">Comentarios</label>
                         <!-- "th:field" debe contener el mismo nombre que la variable en la clase Solicitud -->
                         <!-- "field" lo que hace es mapear la variable "comentarios" -->
-                        <textarea th:field="*{comentarios}" class="form-control" rows="2"></textarea>
+                        <textarea th:field="*{comentarios}" class="form-control" rows="2" title="Comentarios de la aplicación a la vacante" autofocus></textarea>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="archivoCV">Curriculm Vitae</label>
-                        <input type="file" class="form-control-file" name="archivoCV" id="archivoCV">
+                        <label for="archivoCV">* Curriculm Vitae</label>
+                        <input type="file" class="form-control-file" name="archivoCV" id="archivoCV" required>
                         <p class="help-block">Archivos [ pdf,doc,docx ]</p>
                       </div>
                     </div>
