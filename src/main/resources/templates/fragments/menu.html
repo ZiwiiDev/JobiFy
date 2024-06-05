@@ -8,27 +8,27 @@
 		<ul class="navbar-nav mr-auto">
 			<!-- Lo que hago es que sólo pueden ver vacantes los que tengan estos permisos mediante el "sec:authorize" -->
 			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
-				<a class="nav-link" th:href="@{/vacantes/index}">Vacantes</a>
+				<a class="nav-link" th:href="@{/vacantes/index}" title="Ir a Vacantes">Vacantes</a>
 			</li>
 			
 			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
-				<a class="nav-link" th:href="@{/categorias/index}">Categorías</a>
+				<a class="nav-link" th:href="@{/categorias/index}" title="Ir a Categorías">Categorías</a>
 			</li>
 			
 			<li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
-				<a class="nav-link" th:href="@{/solicitudes/index}">Solicitudes</a>
+				<a class="nav-link" th:href="@{/solicitudes/index}" title="Ir a Solicitudes">Solicitudes</a>
 			</li>
 			
 			<li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
-				<a class="nav-link" th:href="@{/usuarios/index}">Usuarios</a>
+				<a class="nav-link" th:href="@{/usuarios/index}" title="Ir a Usuarios">Usuarios</a>
 			</li>
      	</ul>
      	
      	<!-- sec:authorize="isAnonymous()" lo que hace es que sólo les sale el botón de ingresar y registrarse si no han iniciado sesión (anonymous) -->
      	<div sec:authorize="isAnonymous()">
      		 <!-- "@{/index} es para que aparezca la página principal, si lo quitamos o ponemos otra cosa no saldrá -->
-			 <a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;
-    		 <a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>&nbsp;
+			 <a class="btn btn-primary" th:href="@{/index}" title="Pulsa para ingresar">Ingresar</a>&nbsp;
+    		 <a class="btn btn-primary" th:href="@{/signup}" title="Pulsa para registrarte">Registrarse</a>&nbsp;
 		</div>
 			
 		<!-- sec:authorize="isAuthenticated()" lo que hace es que sólo les sale la bienvenida y el botón salir a los usuarios que estén logueados -->

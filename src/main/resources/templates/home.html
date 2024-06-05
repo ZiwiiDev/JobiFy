@@ -1,71 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> <!-- Para utilizar "Thymeleaf"" en un archivo "HTML" se debe agregar el namespace (URL) -->
-  <head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/x-icon" th:href="@{/images/logotipo.png}">
-
     <title>JobiFy | Aplicación para publicar Ofertas de Trabajo</title>
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-  </head>
+</head>
+<body>
+<header th:insert="~{fragments/menu :: menu-principal}"></header>
 
-  <body>
-    <header th:insert="~{fragments/menu :: menu-principal}"></header>
-
-    <main role="main">
-      <div class="jumbotron">
+<main role="main">
+    <div class="jumbotron">
         <div class="container">
-          <h3>¡Encuentra el trabajo de tus sueños! 🤩</h3>
-          Puedes buscar por descripción y categoría.
-          <!-- Para mapear un formulario "HTML" a un objeto de modelo utilizamos "th:object" ("search" es el nombre que le pusimos en el método "setGenericos" del "HomeController") -->
-          <form class="form-inline" th:action="@{/searchOfertas}" method="get" th:object="${searchOfertas}">
-            <input type="text" class="form-control mb-3" th:field="*{descripcion}" placeholder="Escriba una descripción">&nbsp;
-            <select class="custom-select custom-select mb-3" th:field="*{categoria.id}">
-              <option th:value="${null}" selected>Seleccione una categoría</option>
-              <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
-            </select>&nbsp;
-            <button type="submit" class="btn btn-primary mb-3">Buscar</button>
-          </form>
+            <h3>¡Encuentra el trabajo de tus sueños! 🤩</h3>
+            <p class="mb-4">Puedes buscar por descripción y categoría.</p>
+            <form th:action="@{/searchOfertas}" method="get" th:object="${searchOfertas}" class="form-row">
+                <div class="form-group col-md-5 mb-2">
+                    <input type="text" class="form-control" th:field="*{descripcion}" placeholder="Escribe una descripción" title="Descripción de la vacante" autofocus>
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    <select class="custom-select" th:field="*{categoria.id}" title="Categoría de la vacante">
+                        <option th:value="${null}" selected>Seleccione una categoría</option>
+                        <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-primary btn-block">Buscar</button>
+                </div>
+            </form>
         </div>
-      </div>
+    </div>
 
-      <div class="container">
-      <!-- Aviso al usuario que se ha enviado correctamente el CV -->
-      <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
-        <hr><h2 class="font-weight-bold text-center text-capitalize">⭐ DESTACADOS ⭐</h2><hr><br>
-        <div class="row" th:each="vacante : ${vacantes}">
-        
-          <div class="col-md-3">
-            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Logotipo empresa vacante" width="220" height="220">            
-          </div>
-          
-          <div class="col-md-9">
-            <h2 th:text="${vacante.nombre}"></h2>
-            
-            <h6 class="card-title"><strong>Categoría: </strong> 
-            	<span th:text="${vacante.categoria.nombre}"></span>
-            </h6>
-            
-            <h6 class="card-title"><strong>Publicado: </strong>
-            	<!-- Para dar formato a la fecha (quitar la hora, sólo dejar la fecha) debemos usar la expresión "#dates.format" -->
-            	<span th:text="${#dates.format(vacante.fecha, 'dd/MM/yyyy')}"></span>
-            </h6>
-            
-            <p th:text="${vacante.descripcion}"></p>
-            <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${vacante.id}) }" role="button">Detalles &raquo;</a></p><br>
-          </div>
-        </div>
+    <div class="container">
+	    <!-- Aviso al usuario que se ha enviado correctamente el CV -->
+	    <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
 	    <hr>
-      </div>
-    </main>
+	    <h2 class="font-weight-bold text-center text-capitalize">⭐ DESTACADOS ⭐</h2>
+	    <hr><br>
+	    <div class="row" th:each="vacante : ${vacantes}" style="margin-bottom: 20px;">
+	        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+	            <img class="rounded mx-auto d-block img-fluid" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Logotipo empresa vacante" title="Logotipo empresa vacante" style="max-width: 200px;">
+	        </div>
+	        <div class="col-lg-9 col-md-8 col-sm-6 mb-4">
+	            <h2 th:text="${vacante.nombre}"></h2>
+	            <h6 class="card-title"><strong>Categoría: </strong><span th:text="${vacante.categoria.nombre}"></span></h6>
+	            <h6 class="card-title"><strong>Publicado: </strong><span th:text="${#dates.format(vacante.fecha, 'dd/MM/yyyy')}"></span></h6>
+	            <p th:text="${vacante.descripcion}"></p>
+	            <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${vacante.id}) }" role="button">Detalles &raquo;</a></p><br>
+	        </div>
+	    </div>
+	    <hr>
+	</div>
+</main>
 
-    <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
+<footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-  </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
 </html>

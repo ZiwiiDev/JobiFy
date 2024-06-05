@@ -13,61 +13,64 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-  </head>
+</head>
 
-  <body>
-    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+<body>
+<header th:insert="~{fragments/menu :: menu-principal}"></header>
 
-    <main role="main">
-      <hr>
-      <div class="container">
+<main role="main">
+    <hr>
+    <div class="container">
 
         <div class="card">
-          <h4 class="card-header"><strong>Datos de la categoría ✨</strong></h4>
-          <div class="card-body">
-          	<!-- Vincular los input con las propiedades, vincular el formulario con el objeto vacante -->
-            <form th:action="@{/categorias/save}" method="post" th:object="${categoria}">
-				<div th:if="${#fields.hasErrors('*')}"class='alert alert-danger' role='alert'>
-					Por favor, corrige los siguientes errores:
-					<ul>
-						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>	<!-- Creo una variable temporal "err" y si encuentra algún error avisa -->
-					</ul>
-				</div>
-				
-              <div class="row">
-                <div class="col-md-6"> 
-                  <div class="form-group">
-                    <label for="nombre">* Nombre</label>
-                    <!-- Para que actualice el registro que tenga id del que se pinche, y no cree otro registro nuevo con los mismos datos -->
-                    <input type="hidden" th:field="*{id}">
-                     <!-- th:field lo que hace es vincular el campo nombre con el input -->
-                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Escribe el nombre de la categoría" pattern="^[a-zA-Z0-9\s]{3,50}$" title="El nombre debe tener entre 3 y 50 caracteres alfanuméricos" required autofocus>
-                  	<small>🔤 3-50 caracteres alfanuméricos</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="descripcion">Descripción</label>
-                     <!-- th:field debe contener el mismo nombre que la variable en la clase Vacante -->
-                    <textarea class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" title="Descripción" rows="2"></textarea>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <button type="submit" title="Guardar el registro." class="btn btn-primary">Guardar</button>  
-              <button type="button" class="btn btn-secondary" onclick="history.back()">Volver</button>
-            </form>
-          </div>
+            <h4 class="card-header"><strong>Datos de la categoría ✨</strong></h4>
+            <div class="card-body">
+                <!-- Vincular los input con las propiedades, vincular el formulario con el objeto vacante -->
+                <form th:action="@{/categorias/save}" method="post" th:object="${categoria}">
+                    <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+                        Por favor, corrige los siguientes errores:
+                        <ul>
+                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nombre">* Nombre</label>
+                                <!-- Para que actualice el registro que tenga id del que se pinche, y no cree otro registro nuevo con los mismos datos -->
+                                <input type="hidden" th:field="*{id}">
+                                <!-- th:field lo que hace es vincular el campo nombre con el input -->
+                                <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Escribe el nombre de la categoría" pattern="^[a-zA-Z0-9\s]{3,50}$" title="El nombre debe tener entre 3 y 50 caracteres alfanuméricos" required autofocus>
+                                <small>🔤 3-50 caracteres alfanuméricos</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <!-- th:field debe contener el mismo nombre que la variable en la clase Vacante -->
+                                <textarea class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" title="Descripción" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" title="Guardar el registro." class="btn btn-primary btn-block">Guardar</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-secondary btn-block" onclick="history.back()">Volver</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
+    </div>
+</main>
 
-    </main>
+<footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
-     <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
-  </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
 </html>
