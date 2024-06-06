@@ -15,16 +15,16 @@
   </head>
 
   <body>
-	<header th:insert="~{fragments/menu :: menu-principal}"></header>
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
 
     <main role="main">
       <hr>
       <div class="container">
         <div class="row">
-          <div class="col-md-3">
-            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Generic placeholder image" width="220" height="220">            
+          <div class="col-md-4 col-lg-3 mb-4 mb-md-0">
+            <img class="rounded mx-auto d-block img-fluid" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Generic placeholder image" title="Logotipo empresa vacante">            
           </div>
-          <div class="col-md-9">
+          <div class="col-md-8 col-lg-9 mb-4">
             <div class="card">
               <h4 class="card-header"><strong>Mandar curriculum a la vacante '<span th:text="${vacante.nombre}"></span>'</strong></h4>              
               <div class="card-body">
@@ -34,22 +34,22 @@
                 <p class="card-text" th:text="${vacante.descripcion}"></p>
                 <hr>
                 <!-- Vincular los input con las propiedades, vincular el formulario con el objeto vacante -->
-                 <!-- enctype="multipart/form-data" es para poder importar una imagen -->
+                <!-- enctype="multipart/form-data" es para poder importar una imagen -->
                 <form th:action="@{/solicitudes/save}" th:object="${solicitud}" method="post" enctype="multipart/form-data">                                                 
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-group">
-                      	<!-- "th:name" hace que se especifique la variable "id" -->
-                      	<!-- "th:value" es para asignarle el valor del objeto, en este caso "id" -->
-                      	<!-- En la clase Solicitud tenemos una relación OneToOne de tipo Vacante con "idVacante", guardamos en este input el id para tener la relación de vacante y solicitud -->
-                      	<input type="hidden" th:name="vacante.id" th:value="${vacante.id}">
+                        <!-- "th:name" hace que se especifique la variable "id" -->
+                        <!-- "th:value" es para asignarle el valor del objeto, en este caso "id" -->
+                        <!-- En la clase Solicitud tenemos una relación OneToOne de tipo Vacante con "idVacante", guardamos en este input el id para tener la relación de vacante y solicitud -->
+                        <input type="hidden" th:name="vacante.id" th:value="${vacante.id}">
                         <label for="comentarios">Comentarios</label>
                         <!-- "th:field" debe contener el mismo nombre que la variable en la clase Solicitud -->
                         <!-- "field" lo que hace es mapear la variable "comentarios" -->
                         <textarea th:field="*{comentarios}" class="form-control" rows="2" title="Comentarios de la aplicación a la vacante" autofocus></textarea>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label for="archivoCV">* Curriculm Vitae</label>
                         <input type="file" class="form-control-file" name="archivoCV" id="archivoCV" required>
@@ -66,7 +66,6 @@
           </div>
         </div>
       </div>
-
     </main>
 
     <footer class="footer" th:insert="~{fragments/footer :: pie-pagina}"> </footer>
